@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Inicio() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-pink-300 via-pink-400 to-pink-500 text-white px-6">
       <motion.h1
@@ -25,7 +28,7 @@ export default function Inicio() {
         className="bg-white text-pink-600 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-pink-50 hover:scale-105 transition-transform duration-300"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => window.location.href = "/galeria"}
+        onClick={() => navigate("/galeria")}
       >
         Ver Galería
       </motion.button>
