@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const contacto = {
   telefono: "+52 55 6089 0896",
   correo:"cryofthebanshee1@gmail.com",
-  direccion: "Ciudad de México, México",
+  direccion: "Estado de México, Ixtapaluca",
   facebook: "https://www.facebook.com/jessicaanette.gallegosgodinez",
   instagram: "https://www.instagram.com/_galillann_/",
 };
