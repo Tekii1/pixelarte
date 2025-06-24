@@ -1,10 +1,10 @@
 // src/pages/Galeria.jsx
 import { Carousel } from "react-responsive-carousel";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useState, useRef } from "react";
-import Zoom from 'react-medium-image-zoom';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import Zoom from "react-medium-image-zoom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import 'react-medium-image-zoom/dist/styles.css';
+import "react-medium-image-zoom/dist/styles.css";
 
 const categorias = {
   murales: [
@@ -26,60 +26,48 @@ const categorias = {
     { titulo: "Provoker", src: "/galeria/fotografias/foto3.png" },
     { titulo: "Cielo Morado", src: "/galeria/fotografias/foto4.png" },
   ],
+  rediseno: [
+    { titulo: "De la Vez que Tino Perdió su Par", src: "/galeria/rediseno/obra1.jpg" },
+    { titulo: "Gato Rojo, Gato Azul", src: "/galeria/rediseno/obra2.jpg" },
+    { titulo: "La Naranja Mecanica", src: "/galeria/rediseno/obra3.jpg" },
+  ],
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
 };
 
 const CategoriaGaleria = ({ titulo, obras, onSeleccionar }) => (
-  <div className="mb-12">
+  <motion.div
+    className="mb-12"
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.2 }}
+    variants={fadeUp}
+  >
     <h2 className="text-3xl font-bold mb-6 text-center text-pink-600">{titulo}</h2>
     <Carousel showThumbs={false} infiniteLoop autoPlay>
       {obras.map((obra, idx) => (
         <div key={idx} onClick={() => onSeleccionar(obra)} className="cursor-pointer flex justify-center">
           <div className="w-[800px] h-[450px] rounded-2xl overflow-hidden shadow-lg">
-            <img
-              src={obra.src}
-              alt={`obra-${idx}`}
-              className="w-full h-full object-contain"
-            />
+            <img src={obra.src} alt={`obra-${idx}`} className="w-full h-full object-contain" />
           </div>
         </div>
       ))}
     </Carousel>
-  </div>
+  </motion.div>
 );
-
-// Nuevo componente para animar secciones al hacer scroll
-const SeccionAnimada = ({ children }) => {
-  const ref = useRef(null);
-  const estaEnVista = useInView(ref, { once: true, margin: "-50px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={estaEnVista ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      {children}
-    </motion.div>
-  );
-};
 
 export default function Galeria() {
   const [obraSeleccionada, setObraSeleccionada] = useState(null);
 
   return (
     <div className="p-4 max-w-4xl mx-auto relative">
-      <SeccionAnimada>
-        <CategoriaGaleria titulo="Murales" obras={categorias.murales} onSeleccionar={setObraSeleccionada} />
-      </SeccionAnimada>
-
-      <SeccionAnimada>
-        <CategoriaGaleria titulo="Pinturas" obras={categorias.pinturas} onSeleccionar={setObraSeleccionada} />
-      </SeccionAnimada>
-
-      <SeccionAnimada>
-        <CategoriaGaleria titulo="Fotografías" obras={categorias.fotografias} onSeleccionar={setObraSeleccionada} />
-      </SeccionAnimada>
+      <CategoriaGaleria titulo="Rediseño" obras={categorias.rediseno} onSeleccionar={setObraSeleccionada} />
+      <CategoriaGaleria titulo="Murales" obras={categorias.murales} onSeleccionar={setObraSeleccionada} />
+      <CategoriaGaleria titulo="Fotografías" obras={categorias.fotografias} onSeleccionar={setObraSeleccionada} />
+      <CategoriaGaleria titulo="Pinturas" obras={categorias.pinturas} onSeleccionar={setObraSeleccionada} />
 
       <AnimatePresence>
         {obraSeleccionada && (

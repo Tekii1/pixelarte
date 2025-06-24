@@ -3,7 +3,8 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const contacto = {
-  telefono: "+52 123 456 7890",
+  telefono: "+52 55 6089 0896",
+  correo:"cryofthebanshee1@gmail.com",
   direccion: "Ciudad de México, México",
   facebook: "https://www.facebook.com/jessicaanette.gallegosgodinez",
   instagram: "https://www.instagram.com/_galillann_/",
@@ -32,6 +33,9 @@ function Contacto() {
         </p>
         <p className="text-lg">
           <strong>Dirección:</strong> {contacto.direccion}
+        </p>
+        <p className="text-lg">
+          <strong>Correo Electronico:</strong> {contacto.correo}
         </p>
       </motion.div>
 

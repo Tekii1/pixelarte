@@ -20,7 +20,7 @@ function App() {
       </main>
 
       <footer className="bg-pink-200 text-center p-4 text-sm text-black">
-        © {new Date().getFullYear()} PixelArte. Todos los derechos reservados.
+        © {new Date().getFullYear()} Galillan. Todos los derechos reservados.
       </footer>
     </div>
   );
