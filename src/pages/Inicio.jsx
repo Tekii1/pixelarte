@@ -1,9 +1,10 @@
 // src/pages/Inicio.jsx
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-const navigate = useNavigate();
 export default function Inicio() {
+  const navigate = useNavigate(); // ✅ Dentro del componente
+
   return (
     <div
       className="min-h-screen flex flex-col justify-center items-center bg-cover bg-center text-pink-300 px-6"
