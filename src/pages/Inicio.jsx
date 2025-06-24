@@ -1,6 +1,8 @@
 // src/pages/Inicio.jsx
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const navigate = useNavigate();
 export default function Inicio() {
   return (
     <div
@@ -30,7 +32,7 @@ export default function Inicio() {
         className="bg-white text-pink-600 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-pink-50 hover:scale-105 transition-transform duration-300"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => window.location.href = "/galeria"}
+        onClick={() => navigate("/galeria")}
       >
         Ver Galería
       </motion.button>
